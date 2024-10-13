@@ -1,13 +1,11 @@
-// Retrieve the "Submit Answer" button
-const submitButton = document.getElementById('submit-answer');
+// Function to check the user's answer and give feedback
+function checkAnswer() {
+    // Retrieve the correct answer (hardcoded for this quiz)
+    const correctAnswer = '4';
 
-// Check for adding an event listener to the “Submit Answer” button
-submitButton.addEventListener('click', function() {
-    
-    // Check for retrieval of the user’s selected answer
+    // Retrieve the user's selected answer
     const choices = document.getElementsByName('quiz');
     let selectedAnswer;
-    
     for (const choice of choices) {
         if (choice.checked) {
             selectedAnswer = choice.value;
@@ -15,27 +13,25 @@ submitButton.addEventListener('click', function() {
         }
     }
 
-    // Retrieve the feedback element
-    const feedback = document.getElementById('feedback');
-
     // Check if an answer was selected
+    const feedback = document.getElementById('feedback');
     if (!selectedAnswer) {
         feedback.innerText = 'Please select an answer.';
         feedback.style.color = 'orange';
         return;
     }
 
-    // Check for comparison of the user’s answer with the correct answer
-    const correctAnswer = '4';
-
-    // Check for providing feedback based on the comparison
+    // Compare the user's selected answer with the correct answer
     if (selectedAnswer === correctAnswer) {
-        // Provide feedback for correct answer
+        // Provide feedback for the correct answer
         feedback.innerText = 'Correct! 2 + 2 is 4.';
         feedback.style.color = 'green';
     } else {
-        // Provide feedback for incorrect answer
+        // Provide feedback for the incorrect answer
         feedback.innerText = 'Incorrect. Try again.';
         feedback.style.color = 'red';
     }
-});
+}
+
+// Retrieve the "Submit Answer" button and add an event listener
+document.getElementById('submit-answer').addEventListener('click', checkAnswer);
